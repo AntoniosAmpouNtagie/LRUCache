@@ -32,7 +32,7 @@ public class LRUCache {
         if (map.containsKey(key)) {
             lru.remove(key);
             lru.addFirst(key);
-            return lru.getFirst();
+            return map.get(key);
         }
         return -1;
     }
