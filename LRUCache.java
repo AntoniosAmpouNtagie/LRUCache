@@ -16,16 +16,13 @@ public class LRUCache {
     }
 
     public void put(Integer key, Integer value) {
-        if (lru.size() == capacity) {
-            map.remove(lru.getLast());
-            lru.removeLast();
-            lru.addFirst(key);
-            map.put(key, value);
-        } else if (lru.size()<capacity) {
-            lru.addFirst(key);
-            map.put(key, value);
+        if (map.containsKey(key)) {
+            lru.remove(key);
+        } else if (lru.size() == capacity) {
+            map.remove(lru.removeLast());
         }
-
+        lru.addFirst(key);
+        map.put(key, value);
     }
 
     public int get(Integer key) {
